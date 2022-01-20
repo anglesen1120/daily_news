@@ -1,3 +1,4 @@
+import 'package:daily_news/app_utils.dart';
 import 'package:daily_news/models/article.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -49,7 +50,7 @@ class ItemTopHeadline extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(top: 4.0, bottom: 4.0),
               child: Text(
-                article.publishedAt,
+                AppUtils.formatDateTimePublished(article.publishedAt),
                 style: const TextStyle(
                   color: Colors.grey,
                   fontSize: 13.0,

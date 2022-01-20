@@ -47,4 +47,29 @@ class ApiRequest {
       return SourceResponse.withError(error.toString());
     }
   }
+
+  Future<ArticleResponse> requestAllTopic(String topic) async {
+    var params = {'q': topic, 'apiKey': ApiConstants.apiKey};
+    try {
+      Response response =
+          await dio.get(requestEverything, queryParameters: params);
+      return ArticleResponse.fromJson(response.data);
+    } catch (error) {
+      return ArticleResponse.withError(error.toString());
+    }
+  }
+
+  Future<ArticleResponse> requestAllArticlesFromSource(String name) async {
+    var params = {
+      'sources': name,
+      'apiKey': ApiConstants.apiKey
+    };
+    try {
+      Response response =
+          await dio.get(requestTopHeadlines, queryParameters: params);
+      return ArticleResponse.fromJson(response.data);
+    } catch (error) {
+      return ArticleResponse.withError(error.toString());
+    }
+  }
 }

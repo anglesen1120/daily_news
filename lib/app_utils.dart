@@ -1,4 +1,3 @@
-import 'package:intl/intl.dart';
 
 class AppUtils {
   static String formatDateTimePublished(String dateTime) {

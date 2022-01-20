@@ -46,51 +46,91 @@ extension ArticlePageChildren on ArticlePage {
           topRight: Radius.circular(24.0),
         ),
       ),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 24.0, right: 24.0, top: 24.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    controller.detailArticle.author,
+                    style: const TextStyle(
+                      overflow: TextOverflow.ellipsis,
+                      color: Colors.black,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    AppUtils.formatDateTimePublished(
+                        controller.detailArticle.publishedAt),
+                    style: const TextStyle(
+                      color: Colors.grey,
+                      fontSize: 12.0,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding:
+                  const EdgeInsets.only(left: 24.0, right: 24.0, top: 16.0),
+              child: Text(
+                controller.detailArticle.content,
+                style: TextStyle(
+                  color: Colors.grey[700],
+                  fontSize: 16.0,
+                ),
+              ),
+            ),
+            buildListArticles(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget buildListArticles() {
+    return Padding(
+      padding: const EdgeInsets.only(top: 16.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 24.0, right: 24.0, top: 24.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.account_circle,
-                  color: Colors.grey,
-                ),
-                const SizedBox(
-                  width: 8.0,
-                ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      controller.detailArticle.author,
-                      style: const TextStyle(
-                        overflow: TextOverflow.ellipsis,
-                        color: Colors.black,
-                        fontSize: 16.0,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    Text(
-                      controller.detailArticle.publishedAt,
-                      style: const TextStyle(
-                        color: Colors.grey,
-                        fontSize: 12.0,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
+          const Padding(
+            padding: EdgeInsets.only(left: 24.0),
+            child: Text(
+              'Maybe you are interested',
+              style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.bold),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 24.0, right: 24.0, top: 16.0),
-            child: Text(
-              controller.detailArticle.content,
-              style: TextStyle(
-                color: Colors.grey[700],
-                fontSize: 16.0,
+          const SizedBox(
+            height: 16.0,
+          ),
+          Obx(
+            () => SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Row(
+                children: List.generate(
+                  controller.articleList.length,
+                  (index) => ItemTopHeadline(
+                    article: controller.articleList[index],
+                    itemCallback: () {
+                      controller
+                          .onItemArticleClicked(controller.articleList[index]);
+                    },
+                    sourceCallback: () {
+                      controller.onItemNameSourceClicked(
+                          controller.articleList[index].source!);
+                    },
+                  ),
+                ).toList(),
               ),
             ),
           ),

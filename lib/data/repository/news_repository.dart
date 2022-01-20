@@ -11,4 +11,10 @@ class NewsRepository {
 
   Future<ArticleResponse> fetchFavoriteArticle(String category) =>
       request.requestFavoriteArticles(category);
+
+  Future<ArticleResponse> fetchTopicArticle(String topic) =>
+      request.requestAllTopic(topic);
+
+  Future<ArticleResponse> fetchAllArticleFromSource(String name) =>
+      request.requestAllArticlesFromSource(name);
 }

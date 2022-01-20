@@ -2,6 +2,8 @@ import 'package:daily_news/models/article.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import '../../app_utils.dart';
+
 class ItemFavorite extends StatelessWidget {
   const ItemFavorite({
     Key? key,
@@ -66,7 +68,7 @@ class ItemFavorite extends StatelessWidget {
                       ),
                       children: [
                         TextSpan(
-                          text: article.publishedAt.toString(),
+                          text: AppUtils.formatDateTimePublished(article.publishedAt),
                           style: const TextStyle(
                             color: Colors.grey,
                             fontSize: 13.0,
