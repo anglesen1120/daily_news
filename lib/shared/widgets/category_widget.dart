@@ -56,7 +56,7 @@ class CategoryWidget extends StatelessWidget {
                         },
                         sourceCallback: () {
                           controller.onItemNameSourceClicked(
-                              controller.favoriteList[index].source!);
+                              controller.favoriteList[index]);
                         },
                       ),
                     );

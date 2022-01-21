@@ -129,7 +129,12 @@ extension HomePageChildren on HomePage {
               scrollDirection: Axis.horizontal,
               itemCount: controller.sourceList.length,
               itemBuilder: (context, index) {
-                return ItemSource(source: controller.sourceList[index]);
+                return ItemSource(
+                  source: controller.sourceList[index],
+                  callback: () {
+                    AppUtils.launchUrl(controller.sourceList[index].url);
+                  },
+                );
               },
             ),
           ),
@@ -181,7 +186,7 @@ extension HomePageChildren on HomePage {
                   },
                   sourceCallback: () {
                     controller.onItemNameSourceClicked(
-                        controller.topHeadLineList[index].source!);
+                        controller.topHeadLineList[index]);
                   },
                 ),
               ),

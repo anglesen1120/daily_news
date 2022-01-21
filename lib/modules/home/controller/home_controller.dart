@@ -74,7 +74,7 @@ class HomeController extends GetxController
     Get.toNamed(Routes.article, arguments: article);
   }
 
-  onItemNameSourceClicked(Source source) {
-    AppUtils.launchUrl(source.url);
+  onItemNameSourceClicked(Article article) {
+    AppUtils.launchUrl(article.linkUrl);
   }
 }
