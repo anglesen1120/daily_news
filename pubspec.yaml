@@ -38,6 +38,7 @@ dependencies:
   dio: ^4.0.4
   intl: ^0.17.0
   flutter_easyloading: ^3.0.3
+  url_launcher: ^6.0.18
 
 dev_dependencies:
   flutter_test:

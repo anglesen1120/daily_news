@@ -1,5 +1,8 @@
+import 'dart:developer';
+
+import 'package:daily_news/app_utils.dart';
 import 'package:daily_news/data/api/response/article_response.dart';
-import 'package:daily_news/data/repository/news_repository.dart';
+import 'package:daily_news/data/repository/api_repository.dart';
 import 'package:daily_news/models/article.dart';
 import 'package:daily_news/models/source.dart';
 import 'package:daily_news/routes/app_routes.dart';
@@ -8,11 +11,12 @@ import 'package:get/get.dart';
 
 class HomeController extends GetxController
     with GetSingleTickerProviderStateMixin {
-  NewsRepository repository = NewsRepository();
+  ApiRepository repository = ApiRepository();
   ArticleResponse articleResponse = ArticleResponse();
   var topHeadLineList = <Article>[].obs;
   var favoriteList = <Article>[].obs;
   var topicList = <Article>[].obs;
+  var sourceList = <Source>[].obs;
   var totalArticle = 0.obs;
   List<String> categories = [
     'business',
@@ -21,20 +25,32 @@ class HomeController extends GetxController
     'health',
     'science',
     'sports',
-    'technology'
+    'technology',
   ];
   TabController? tabController;
 
   @override
   void onInit() {
     super.onInit();
+    log("Home Init");
     tabController = TabController(vsync: this, length: categories.length);
   }
 
-  HomeController() {
+  @override
+  void onReady() {
+    super.onReady();
+    log('Home Ready');
     getTopHeadlines();
     getFavoriteArticle('business');
     getTopicArticles('bitcoin');
+    getSources();
+  }
+
+  @override
+  void onClose() {
+    super.onClose();
+    log("Home Close");
+    tabController?.dispose();
   }
 
   getTopHeadlines() async {
@@ -50,9 +66,15 @@ class HomeController extends GetxController
     topicList.value = await repository.fetchTopicArticle(topic);
   }
 
+  getSources() async {
+    sourceList.value = await repository.fetchAllSources();
+  }
+
   onItemArticleClicked(Article article) {
     Get.toNamed(Routes.article, arguments: article);
   }
 
-  onItemNameSourceClicked(Source source) {}
+  onItemNameSourceClicked(Source source) {
+    AppUtils.launchUrl(source.url);
+  }
 }

@@ -37,7 +37,7 @@ class ApiRequest {
     }
   }
 
-  Future<SourceResponse> requestAllArticleFromSource() async {
+  Future<SourceResponse> requestAllSources() async {
     var params = {'apikey': ApiConstants.apiKey};
     try {
       Response response =

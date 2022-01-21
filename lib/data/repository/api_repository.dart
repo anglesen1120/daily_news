@@ -1,11 +1,13 @@
 import 'package:daily_news/data/api/api_request.dart';
 import 'package:daily_news/data/api/response/article_response.dart';
+import 'package:daily_news/data/api/response/source_response.dart';
 import 'package:daily_news/models/article.dart';
+import 'package:daily_news/models/source.dart';
 
-class NewsRepository {
+class ApiRepository {
   ApiRequest request = ApiRequest();
 
-  NewsRepository();
+  ApiRepository();
 
   Future<List<Article>> fetchAllTopHeadline() async {
     ArticleResponse articleResponse = await request.requestAllTopHeadline();
@@ -27,5 +29,10 @@ class NewsRepository {
     ArticleResponse articleResponse =
         await request.requestAllArticlesFromSource(name);
     return articleResponse.articles;
+  }
+
+  Future<List<Source>> fetchAllSources() async {
+    SourceResponse sourceResponse = await request.requestAllSources();
+    return sourceResponse.sources;
   }
 }

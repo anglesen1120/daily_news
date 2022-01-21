@@ -1,8 +1,17 @@
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AppUtils {
   static String formatDateTimePublished(String strDateTime) {
     DateTime dateTime = DateTime.parse(strDateTime);
     return DateFormat('dd/MM/yyyy').format(dateTime);
+  }
+
+  static launchUrl(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      throw "Could not launch $url";
+    }
   }
 }

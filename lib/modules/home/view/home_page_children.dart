@@ -104,6 +104,36 @@ extension HomePageChildren on HomePage {
   Widget buildContent() {
     return Column(
       children: [
+        const ListTile(
+          contentPadding: EdgeInsets.only(
+            left: 32.0,
+            right: 24.0,
+            top: 24.0,
+          ),
+          title: Text(
+            'Official Partners',
+            style: TextStyle(
+                color: Colors.black,
+                fontSize: 23.0,
+                fontWeight: FontWeight.bold),
+          ),
+        ),
+        Obx(
+          () => Container(
+            margin: const EdgeInsets.only(
+              left: 32.0,
+            ),
+            height: 50.0,
+            child: ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.horizontal,
+              itemCount: controller.sourceList.length,
+              itemBuilder: (context, index) {
+                return ItemSource(source: controller.sourceList[index]);
+              },
+            ),
+          ),
+        ),
         ListTile(
           contentPadding: const EdgeInsets.only(
             left: 32.0,
