@@ -1,4 +1,3 @@
-import 'package:daily_news/data/api/response/article_response.dart';
 import 'package:daily_news/data/repository/news_repository.dart';
 import 'package:daily_news/models/article.dart';
 import 'package:daily_news/models/source.dart';
@@ -7,7 +6,6 @@ import 'package:get/get.dart';
 
 class ArticleController extends GetxController {
   NewsRepository repository = NewsRepository();
-  ArticleResponse articleResponse = ArticleResponse();
   var articleList = <Article>[].obs;
   Article detailArticle = Get.arguments;
 
@@ -16,18 +14,15 @@ class ArticleController extends GetxController {
   }
 
   getAllArticleFromSource() async {
-    articleResponse = await repository
+    articleList.value = await repository
         .fetchAllArticleFromSource(detailArticle.source!.id.toString());
-    articleList.value = articleResponse.articles;
   }
 
   onItemArticleClicked(Article article) {
     Get.toNamed(Routes.article, arguments: article);
   }
 
-  onItemNameSourceClicked(Source source) {
-
-  }
+  onItemNameSourceClicked(Source source) {}
 
   onBack() {
     Get.back();

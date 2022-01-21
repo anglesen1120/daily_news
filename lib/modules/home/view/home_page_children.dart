@@ -17,10 +17,12 @@ extension HomePageChildren on HomePage {
                 color:
                     Color.fromARGB(Color.getAlphaFromOpacity(0.5), 15, 23, 42),
               ),
-              child: Image.network(
-                controller.topicList[0].urlImage,
-                fit: BoxFit.fill,
-              ),
+              child: controller.topicList.isNotEmpty
+                  ? Image.network(
+                      controller.topicList[0].urlImage,
+                      fit: BoxFit.fill,
+                    )
+                  : const SizedBox(),
             ),
           ),
           Positioned(
@@ -51,18 +53,20 @@ extension HomePageChildren on HomePage {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
-                  child: Text(
-                    controller.topicList[0].title,
-                    maxLines: 2,
-                    style: const TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 23.0,
-                    ),
-                  ),
-                ),
+                controller.topicList.isNotEmpty
+                    ? Padding(
+                        padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
+                        child: Text(
+                          controller.topicList[0].title,
+                          maxLines: 2,
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 23.0,
+                          ),
+                        ),
+                      )
+                    : const SizedBox(),
                 GestureDetector(
                   onTap: () {
                     controller.onItemArticleClicked(controller.topicList[0]);

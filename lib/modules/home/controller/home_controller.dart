@@ -38,26 +38,21 @@ class HomeController extends GetxController
   }
 
   getTopHeadlines() async {
-    articleResponse = await repository.fetchAllTopHeadline();
-    topHeadLineList.value = articleResponse.articles;
-    totalArticle.value = articleResponse.total;
+    topHeadLineList.value = await repository.fetchAllTopHeadline();
+    totalArticle.value = topHeadLineList.length;
   }
 
   getFavoriteArticle(String category) async {
-    articleResponse = await repository.fetchFavoriteArticle(category);
-    favoriteList.value = articleResponse.articles;
+    favoriteList.value = await repository.fetchFavoriteArticle(category);
   }
 
   getTopicArticles(String topic) async {
-    articleResponse = await repository.fetchTopicArticle(topic);
-    topicList.value = articleResponse.articles;
+    topicList.value = await repository.fetchTopicArticle(topic);
   }
 
   onItemArticleClicked(Article article) {
     Get.toNamed(Routes.article, arguments: article);
   }
 
-  onItemNameSourceClicked(Source source) {
-
-  }
+  onItemNameSourceClicked(Source source) {}
 }

@@ -37,6 +37,7 @@ class ArticlePage extends GetView<ArticleController> {
               left: 24.0,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   GestureDetector(
                     onTap: () {
@@ -48,7 +49,7 @@ class ArticlePage extends GetView<ArticleController> {
                     ),
                   ),
                   const SizedBox(
-                    height: 75.0,
+                    height: 95.0,
                   ),
                   TitleCard(
                     nameCategory: controller.detailArticle.source!.name,
