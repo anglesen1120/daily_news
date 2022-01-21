@@ -1,7 +1,9 @@
+import 'dart:ui';
+
 import 'package:daily_news/app_utils.dart';
 import 'package:daily_news/modules/detail/article/controller/article_controller.dart';
 import 'package:daily_news/shared/items/item_top_headline.dart';
-import 'package:daily_news/shared/widgets/category_card.dart';
+import 'package:daily_news/shared/widgets/title_card.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 

@@ -38,7 +38,7 @@ extension HomePageChildren on HomePage {
                 const SizedBox(
                   height: 75.0,
                 ),
-                const CategoryCard(
+                const TitleCard(
                   nameCategory: 'News of the day',
                   width: 160.0,
                   height: 42.0,

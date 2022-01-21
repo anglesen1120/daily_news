@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:daily_news/modules/detail/source/controller/source_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';

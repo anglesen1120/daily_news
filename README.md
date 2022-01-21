@@ -1,6 +1,6 @@
 # daily_news
 
-Ứng dụng tin tức từ Facebook.
+Ứng dụng đọc tin tức với NewsAPI được viết bởi Flutter.
 
 ## Getting Started
 

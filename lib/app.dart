@@ -1,6 +1,7 @@
 import 'package:daily_news/routes/app_pages.dart';
 import 'package:daily_news/routes/app_routes.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 
 class App extends StatelessWidget {
@@ -12,7 +13,8 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Daily News',
       getPages: routePages,
-      initialRoute: Routes.container,
+      initialRoute: Routes.home,
+      builder: EasyLoading.init(),
     );
   }
 }

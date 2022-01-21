@@ -7,7 +7,7 @@ extension ArticlePageChildren on ArticlePage {
       children: [
         Padding(
           padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-          child: CategoryCard(
+          child: TitleCard(
               nameCategory: controller.detailArticle.source!.name,
               width: 80.0,
               height: 32.0),
@@ -114,25 +114,35 @@ extension ArticlePageChildren on ArticlePage {
             height: 16.0,
           ),
           Obx(
-            () => SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: List.generate(
-                  controller.articleList.length,
-                  (index) => ItemTopHeadline(
-                    article: controller.articleList[index],
-                    itemCallback: () {
-                      controller
-                          .onItemArticleClicked(controller.articleList[index]);
-                    },
-                    sourceCallback: () {
-                      controller.onItemNameSourceClicked(
-                          controller.articleList[index].source!);
-                    },
+            () => controller.articleList.isNotEmpty
+                ? SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: List.generate(
+                        controller.articleList.length,
+                        (index) => ItemTopHeadline(
+                          article: controller.articleList[index],
+                          itemCallback: () {
+                            controller.onItemArticleClicked(
+                                controller.articleList[index]);
+                          },
+                          sourceCallback: () {
+                            controller.onItemNameSourceClicked(
+                                controller.articleList[index].source!);
+                          },
+                        ),
+                      ).toList(),
+                    ),
+                  )
+                : const Center(
+                    child: Text(
+                      'No result for source.',
+                      style: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16.0,
+                      ),
+                    ),
                   ),
-                ).toList(),
-              ),
-            ),
           ),
         ],
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CategoryCard extends StatelessWidget {
-  const CategoryCard({
+class TitleCard extends StatelessWidget {
+  const TitleCard({
     Key? key,
     required this.nameCategory,
     required this.width,
