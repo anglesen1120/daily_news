@@ -1,5 +1,4 @@
 import 'package:daily_news/models/article.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
 import '../../app_utils.dart';
@@ -20,86 +19,47 @@ class ItemFavorite extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: itemCallback,
-      child: Container(
-        margin: const EdgeInsets.only(right: 16.0, left: 16.0, top: 16.0),
-        width: 360.0,
-        child: Row(
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(8.0),
-              child: Image.network(
-                article.urlImage,
-                width: 80.0,
-                height: 80.0,
-                fit: BoxFit.fill,
+      child: Padding(
+        padding: const EdgeInsets.only(right: 16.0, left: 16.0, top: 16.0),
+        child: SizedBox(
+          width: 360.0,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              ClipRRect(
+                borderRadius: BorderRadius.circular(8.0),
+                child: Image.network(
+                  article.urlImage,
+                  width: double.infinity,
+                  height: 150.0,
+                  fit: BoxFit.fill,
+                ),
               ),
-            ),
-            const SizedBox(
-              width: 12.0,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  article.title
-                      .toString()
-                      .replaceRange(20, article.title.length, '...'),
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+              const SizedBox(
+                height: 12.0,
+              ),
+              Text(
+                article.title.toString(),
+                maxLines: 3,
+                style: const TextStyle(
+                  overflow: TextOverflow.ellipsis,
+                  color: Colors.black,
+                  fontSize: 23.0,
                 ),
-                Text(
-                  article.description
-                      .replaceRange(20, article.description.length, "..."),
-                  style: TextStyle(
-                    overflow: TextOverflow.ellipsis,
-                    color: Colors.grey[800],
-                    fontSize: 13.0,
-                  ),
+              ),
+              const SizedBox(
+                height: 12.0,
+              ),
+              Text(
+                AppUtils.formatDateTimePublished(article.publishedAt),
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 13.0,
+                  fontWeight: FontWeight.bold,
                 ),
-                RichText(
-                  text: TextSpan(
-                      text: 'Published at ',
-                      style: TextStyle(
-                        color: Colors.grey[800],
-                        fontSize: 13.0,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: AppUtils.formatDateTimePublished(article.publishedAt),
-                          style: const TextStyle(
-                            color: Colors.grey,
-                            fontSize: 13.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        )
-                      ]),
-                ),
-                RichText(
-                  text: TextSpan(
-                      text: 'Reported by ',
-                      style: TextStyle(
-                        color: Colors.grey[800],
-                        fontSize: 13.0,
-                      ),
-                      children: [
-                        TextSpan(
-                          text: article.source!.name.toString(),
-                          style: const TextStyle(
-                            color: Colors.black,
-                            fontSize: 13.0,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          recognizer: TapGestureRecognizer()
-                            ..onTap = sourceCallback,
-                        )
-                      ]),
-                ),
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );

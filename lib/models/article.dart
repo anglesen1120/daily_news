@@ -12,12 +12,12 @@ class Article {
 
   Article.fromJson(Map<String, dynamic> json) {
     source = Source.fromJson(json['source']);
-    author = json['author'] ?? 'Nguyen Hoang Phuc';
-    title = json['title'] ?? 'Em gai a';
-    description = json['description'] ?? 'Co biet tau la ai ko ?';
+    author = json['author'] ?? 'Unknown';
+    title = json['title'] ?? 'Unknown';
+    description = json['description'] ?? 'No Description for article.';
     linkUrl = json['url'] ?? 'https://www.google.com';
     urlImage = json['urlToImage']  ?? 'https://i.ytimg.com/vi/ArW4-mkGHSw/maxresdefault.jpg';
-    publishedAt = json['publishedAt'] ?? '19/1/2022';
-    content = json['content'] ?? 'My name is Phuc, i am studying at high school';
+    publishedAt = json['publishedAt'] ?? DateTime.now();
+    content = json['content'] ?? 'Wish you always show off, be merry and happy.';
   }
 }

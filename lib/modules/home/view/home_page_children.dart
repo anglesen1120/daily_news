@@ -15,8 +15,8 @@ extension HomePageChildren on HomePage {
               borderRadius: BorderRadius.circular(12.0),
               color: Color.fromARGB(Color.getAlphaFromOpacity(0.5), 15, 23, 42),
             ),
-            child: Image.asset(
-              'assets/images/source.jpg',
+            child: Image.network(
+              controller.topHeadLineList[0].urlImage,
               fit: BoxFit.fill,
             ),
           ),
@@ -46,7 +46,7 @@ extension HomePageChildren on HomePage {
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
                   child: Text(
-                    'Hello, Nguyen Hoang Phuc',
+                    controller.topHeadLineList[0].title,
                     maxLines: 3,
                     style: const TextStyle(
                       color: Colors.white,
@@ -57,8 +57,7 @@ extension HomePageChildren on HomePage {
                 ),
                 GestureDetector(
                   onTap: () {
-                    controller
-                        .onItemArticleClicked(controller.favoriteList[0]);
+                    controller.onItemArticleClicked(controller.favoriteList[0]);
                   },
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -107,17 +106,16 @@ extension HomePageChildren on HomePage {
                 fontWeight: FontWeight.bold),
           ),
           subtitle: Obx(
-                () =>
-                Padding(
-                  padding: const EdgeInsets.only(top: 4.0),
-                  child: Text(
-                    '(${controller.totalArticle} articles)',
-                    style: const TextStyle(
-                      color: Colors.grey,
-                      fontSize: 14.0,
-                    ),
-                  ),
+            () => Padding(
+              padding: const EdgeInsets.only(top: 4.0),
+              child: Text(
+                '(${controller.totalArticle} articles)',
+                style: const TextStyle(
+                  color: Colors.grey,
+                  fontSize: 14.0,
                 ),
+              ),
+            ),
           ),
           trailing: const Text(
             'Read More',
@@ -130,24 +128,22 @@ extension HomePageChildren on HomePage {
         SingleChildScrollView(
           scrollDirection: Axis.horizontal,
           child: Obx(
-                () =>
-                Row(
-                  children: List.generate(
-                    controller.topHeadLineList.length,
-                        (index) =>
-                        ItemTopHeadline(
-                          article: controller.topHeadLineList[index],
-                          itemCallback: () {
-                            controller.onItemArticleClicked(
-                                controller.topHeadLineList[index]);
-                          },
-                          sourceCallback: () {
-                            controller.onItemNameSourceClicked(
-                                controller.topHeadLineList[index].source!);
-                          },
-                        ),
-                  ),
+            () => Row(
+              children: List.generate(
+                controller.topHeadLineList.length,
+                (index) => ItemTopHeadline(
+                  article: controller.topHeadLineList[index],
+                  itemCallback: () {
+                    controller.onItemArticleClicked(
+                        controller.topHeadLineList[index]);
+                  },
+                  sourceCallback: () {
+                    controller.onItemNameSourceClicked(
+                        controller.topHeadLineList[index].source!);
+                  },
                 ),
+              ),
+            ),
           ),
         ),
         const CategoryWidget(),
