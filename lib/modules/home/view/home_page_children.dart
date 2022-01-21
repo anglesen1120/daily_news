@@ -2,52 +2,60 @@ part of 'home_page.dart';
 
 extension HomePageChildren on HomePage {
   Widget buildHeader() {
-    return Stack(
-      children: [
-        ClipRRect(
-          borderRadius: const BorderRadius.only(
-              bottomLeft: Radius.circular(24.0),
-              bottomRight: Radius.circular(24.0)),
-          child: Container(
-            width: double.infinity,
-            height: 360.0,
-            foregroundDecoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(12.0),
-              color: Color.fromARGB(Color.getAlphaFromOpacity(0.5), 15, 23, 42),
-            ),
-            child: Image.network(
-              controller.topHeadLineList[0].urlImage,
-              fit: BoxFit.fill,
+    return Obx(
+      () => Stack(
+        children: [
+          ClipRRect(
+            borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(24.0),
+                bottomRight: Radius.circular(24.0)),
+            child: Container(
+              width: double.infinity,
+              height: 360.0,
+              foregroundDecoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12.0),
+                color:
+                    Color.fromARGB(Color.getAlphaFromOpacity(0.5), 15, 23, 42),
+              ),
+              child: Image.network(
+                controller.topicList[0].urlImage,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
-        ),
-        Positioned(
-          top: 0.0,
-          left: 32.0,
-          bottom: 32.0,
-          right: 40.0,
-          child: SafeArea(
-            top: true,
+          Positioned(
+            left: 32.0,
+            child: SafeArea(
+              top: true,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: const [
+                  Icon(
+                    Icons.menu,
+                    color: Colors.white,
+                  ),
+                  SizedBox(
+                    height: 85.0,
+                  ),
+                  TitleCard(
+                    nameCategory: 'News of the day',
+                  ),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            left: 32.0,
+            bottom: 32.0,
+            right: 40.0,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Icon(
-                  Icons.menu,
-                  color: Colors.white,
-                ),
-                const SizedBox(
-                  height: 75.0,
-                ),
-                const TitleCard(
-                  nameCategory: 'News of the day',
-                  width: 160.0,
-                  height: 42.0,
-                ),
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0, bottom: 16.0),
                   child: Text(
-                    controller.topHeadLineList[0].title,
-                    maxLines: 3,
+                    controller.topicList[0].title,
+                    maxLines: 2,
                     style: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
@@ -57,7 +65,7 @@ extension HomePageChildren on HomePage {
                 ),
                 GestureDetector(
                   onTap: () {
-                    controller.onItemArticleClicked(controller.favoriteList[0]);
+                    controller.onItemArticleClicked(controller.topicList[0]);
                   },
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -84,8 +92,8 @@ extension HomePageChildren on HomePage {
               ],
             ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 

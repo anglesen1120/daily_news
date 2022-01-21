@@ -4,19 +4,14 @@ class TitleCard extends StatelessWidget {
   const TitleCard({
     Key? key,
     required this.nameCategory,
-    required this.width,
-    required this.height,
   }) : super(key: key);
 
   final String nameCategory;
-  final double width;
-  final double height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: width,
-      height: height,
+      padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(18.0),
           color: Color.fromARGB(Color.getAlphaFromOpacity(0.5), 255, 255, 255),

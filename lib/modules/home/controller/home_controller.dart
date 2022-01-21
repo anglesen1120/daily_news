@@ -12,6 +12,7 @@ class HomeController extends GetxController
   ArticleResponse articleResponse = ArticleResponse();
   var topHeadLineList = <Article>[].obs;
   var favoriteList = <Article>[].obs;
+  var topicList = <Article>[].obs;
   var totalArticle = 0.obs;
   List<String> categories = [
     'business',
@@ -33,6 +34,7 @@ class HomeController extends GetxController
   HomeController() {
     getTopHeadlines();
     getFavoriteArticle('business');
+    getTopicArticles('bitcoin');
   }
 
   getTopHeadlines() async {
@@ -46,11 +48,16 @@ class HomeController extends GetxController
     favoriteList.value = articleResponse.articles;
   }
 
+  getTopicArticles(String topic) async {
+    articleResponse = await repository.fetchTopicArticle(topic);
+    topicList.value = articleResponse.articles;
+  }
+
   onItemArticleClicked(Article article) {
     Get.toNamed(Routes.article, arguments: article);
   }
 
   onItemNameSourceClicked(Source source) {
-    Get.toNamed(Routes.source, arguments: source);
+
   }
 }

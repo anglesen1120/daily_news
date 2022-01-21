@@ -6,13 +6,6 @@ extension ArticlePageChildren on ArticlePage {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 24.0, right: 24.0),
-          child: TitleCard(
-              nameCategory: controller.detailArticle.source!.name,
-              width: 80.0,
-              height: 32.0),
-        ),
-        Padding(
           padding: const EdgeInsets.only(
               left: 24.0, right: 24.0, bottom: 8.0, top: 8.0),
           child: Text(

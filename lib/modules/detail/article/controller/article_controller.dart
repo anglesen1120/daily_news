@@ -26,7 +26,7 @@ class ArticleController extends GetxController {
   }
 
   onItemNameSourceClicked(Source source) {
-    Get.toNamed(Routes.source, arguments: source);
+
   }
 
   onBack() {

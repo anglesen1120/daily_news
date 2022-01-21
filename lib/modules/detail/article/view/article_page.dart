@@ -35,14 +35,25 @@ class ArticlePage extends GetView<ArticleController> {
             Positioned(
               top: 56.0,
               left: 24.0,
-              child: GestureDetector(
-                onTap: () {
-                  controller.onBack();
-                },
-                child: const Icon(
-                  Icons.arrow_back,
-                  color: Colors.white,
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  GestureDetector(
+                    onTap: () {
+                      controller.onBack();
+                    },
+                    child: const Icon(
+                      Icons.arrow_back,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 75.0,
+                  ),
+                  TitleCard(
+                    nameCategory: controller.detailArticle.source!.name,
+                  ),
+                ],
               ),
             ),
             Positioned(

@@ -3,5 +3,4 @@ abstract class Routes {
   static const search = '/search';
   static const person = '/person';
   static const article = '/article';
-  static const source = '/source';
 }
