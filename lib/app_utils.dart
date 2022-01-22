@@ -9,7 +9,12 @@ class AppUtils {
 
   static launchUrl(String url) async {
     if (await canLaunch(url)) {
-      await launch(url);
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: true,
+        enableJavaScript: true,
+      );
     } else {
       throw "Could not launch $url";
     }
